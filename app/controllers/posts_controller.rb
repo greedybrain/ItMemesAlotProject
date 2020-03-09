@@ -6,17 +6,22 @@ class PostsController < ApplicationController
      end
 
      def show
-          @post = Post.find(params[:id])
+          if params[:user_id]
+               @user = User.find(params[:user_id])
+               @post = @user.posts.find(params[:id])
+          else
+               redirect_to posts_path
+          end
      end
 
      def new
-          @post = Post.new
+          @post = current_user.posts.build
      end
 
      def create
           @post = Post.new(post_params)
           if @post.save 
-               redirect_to post_path(@post), notice: "Post created"
+               redirect_to user_post_path(@post), notice: "Post created"
           else
                render :new, alert: "Something went wrong"
           end
@@ -44,7 +49,7 @@ class PostsController < ApplicationController
      private
 
      def post_params
-          params.require(:post).permit(:image_url)
+          params.require(:post).permit(:image_url, :user_id)
      end
 
 end

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-
   devise_scope :user do 
      get '/users/:id', to: "users#show"
-     resources :posts, except: [:index]
+  end
+  
+  resources :users, except: [:show] do 
+    resources :posts, except: [:index]
   end
 
   resources :posts, only: [:index]
