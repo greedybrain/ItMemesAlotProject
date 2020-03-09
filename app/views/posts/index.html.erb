@@ -1,12 +1,13 @@
 <%# POSTS INDEX %>
 <h1>Meme Feed</h1>
-<%= link_to "New Post", new_post_path %>
+<%= link_to "New Post", new_post_path(current_user) %>
 <ul>
      <% @posts.each do |post| %>
-          <li><%= image_tag(post.image_url, size: "200x200") %></li>
+          <li><%= image_tag(post.image_url, size: "250x250") %></li>
           <%= link_to "Show Post", post_path(post) %> |
           <%= link_to "Edit Post", edit_post_path(post) %> |
           <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: "Are you sure?" } %>
+         
      <% end %>
      <%# []Include the user of this post  %>
      <%# [X]Include path to posts show page %>
