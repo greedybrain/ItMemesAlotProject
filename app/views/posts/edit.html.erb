@@ -1,1 +1,4 @@
-<%= render "posts/form" %>
+<%= form_for [@post.user, @post] do |f| %>
+     <%= f.file_field :image_url %><br>
+     <%= f.submit %>
+<% end %>

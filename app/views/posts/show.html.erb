@@ -2,8 +2,9 @@
 
 <%= image_tag(@post.image_url, size: "200x200", alt: "First meme post") %><br>
 <%= link_to "Meme Feed", posts_path %> |
-<%= link_to "Edit Post", edit_post_path(@post) %> |
-<%= link_to "Delete Post", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Edit Post", edit_user_post_path(@post) %> |
+<%= link_to "Delete Post", user_post_path(@post.user, @post), method: :delete, data: { confirm: "Are you sure?" } %>
+
 <%# [X]Back to all posts link  %>
 <%# [X]If the user is signed in allow delete  %>
 <%# [X]If the user is signed in allow edit  %>

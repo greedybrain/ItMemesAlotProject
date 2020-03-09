@@ -4,7 +4,7 @@ Rails.application.routes.draw do
      get '/users/:id', to: "users#show"
   end
   
-  resources :users, except: [:show] do 
+  resources :users do 
     resources :posts, except: [:index]
   end
 
