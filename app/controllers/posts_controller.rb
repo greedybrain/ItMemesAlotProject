@@ -1,0 +1,49 @@
+class PostsController < ApplicationController
+
+     def index 
+          @posts = Post.all
+     end
+
+     def show
+          @post = Post.find(params[:id])
+     end
+
+     def new
+          @post = Post.new
+     end
+
+     def create
+          @post = Post.new(post_params)
+          if @post.save 
+               redirect_to post_path(@post), notice: "Post created"
+          else
+               render :new, alert: "Something went wrong"
+          end
+     end
+
+     def edit
+          @post = Post.find(parmas[:id])
+     end
+
+     def update
+          @post = Post.find(parmas[:id])
+          if @post.update(post_params)
+               redirect_to post_path(@post), notice: "Post updated"
+          else 
+               render :edit
+          end
+     end
+
+     def destroy
+          @post = Post.find(parmas[:id])
+          @post.destroy 
+          redirect_to posts_path
+     end
+
+     private
+
+     def post_params
+          params.require(:post).permit(:image_url)
+     end
+
+end
