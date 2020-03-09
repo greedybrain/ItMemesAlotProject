@@ -22,11 +22,11 @@ class PostsController < ApplicationController
      end
 
      def edit
-          @post = Post.find(parmas[:id])
+          @post = Post.find(params[:id])
      end
 
      def update
-          @post = Post.find(parmas[:id])
+          @post = Post.find(params[:id])
           if @post.update(post_params)
                redirect_to post_path(@post), notice: "Post updated"
           else 
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
      end
 
      def destroy
-          @post = Post.find(parmas[:id])
+          @post = Post.find(params[:id])
           @post.destroy 
           redirect_to posts_path
      end
