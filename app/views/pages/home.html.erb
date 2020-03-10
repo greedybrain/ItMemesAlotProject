@@ -1,1 +1,11 @@
 <h1>Anyone can see this page(logged in or not!)</h1>
+
+<ul>
+     <% @posts.each do |post| %>
+          <li><%= image_tag(post.image_url, size: "250x250") %></li>
+          <%= link_to "Show Post", user_post_path(post.user, post) if user_signed_in? %> |
+          <%= link_to "Edit Post", edit_user_post_path(current_user, post) if user_signed_in? %> |
+          <%= link_to "Delete Post", user_post_path(current_user, post), method: :delete, data: { confirm: "Are you sure?" } if user_signed_in? %>
+         
+     <% end %>
+</ul>
