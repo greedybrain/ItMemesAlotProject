@@ -1,0 +1,6 @@
+<div>
+     <% @comments.each do |c| %>
+          <p><%= c.content %> <span>(<%= time_ago_in_words(c.created_at) %> ago)</span></p>
+     <% end %>
+</div>
+

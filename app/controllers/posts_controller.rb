@@ -9,9 +9,10 @@ class PostsController < ApplicationController
           if params[:user_id]
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])
+               @comments = @post.comments
                @posts = @user.posts
           else
-               redirect_to posts_path
+               redirect_to root_path
           end
      end
 
