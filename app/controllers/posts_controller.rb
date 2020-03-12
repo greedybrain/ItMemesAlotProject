@@ -9,12 +9,12 @@ class PostsController < ApplicationController
           if params[:user_id]
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])
-               @like = @post.likes
-               @comments = @post.comments
                @posts = @user.posts
-               @users_that_liked = @post.likes.collect do |like|
-                    User.find(like.user_id)
-               end
+               @comments = @post.comments
+               @likers = all_users_that_liked_this_post
+          elsif params[:post_id]
+               @post = Post.find(params[:post_id])
+               @like = @post.likes.find(params[:id])
           else
                redirect_to root_path
           end

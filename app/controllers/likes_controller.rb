@@ -2,16 +2,7 @@ class LikesController < ApplicationController
      before_action :authenticate_user!
      
      def create
-          if params[:post_id]
-               @post = Post.find(params[:post_id])
-               already_liked = @post.likes.collect{|like| like.user_id == current_user.id}.count >= 1
-               if already_liked
-                    redirect_to user_post_path(@post.user, @post), alert: "You already liked this post"
-               else
-                    @like = @post.likes.create(like_params)
-                    redirect_to user_post_path(@post.user, @post)
-               end
-          end
+          like_post_if_not_liked_already
      end
 
      def destroy

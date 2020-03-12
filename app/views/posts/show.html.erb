@@ -2,7 +2,7 @@
 
 <%= image_tag(@post.image_url, size: "200x200", alt: "First meme post") %><br>
 <div>
-     <p><%= render "likes/button" %> <%= pluralize(@post.likes.count, 'like') if @post.likes.count != 0 %> </p>
+     <p><%= render "likes/button" %> <%= pluralize(@post.likes.count, 'like') if @post.likes.count != 0 %></p>
      
 </div>
 <%= link_to "Meme Feed", posts_path %>
@@ -16,7 +16,7 @@
 </div>
 <div>
      <ul>
-          <% @users_that_liked.each do |user| %>
+          <% @likers.each do |user| %>
                <li><%= user.email %></li>
           <% end %>
      </ul>
