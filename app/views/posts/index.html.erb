@@ -3,10 +3,8 @@
 <%= link_to "New Post", new_user_post_path(current_user) if current_user %>
 <ul>
      <% @posts.each do |post| %>
-          <li><%= image_tag(post.image_url, size: "250x250") %></li>
-          <%= link_to "Show Post", user_post_path(post.user, post) %>
-          <%= link_to "Edit Post", edit_user_post_path(post.user, post) if current_user.posts.include?(post) %>
-          <%= link_to "Delete Post", user_post_path(post.user, post), method: :delete, data: { confirm: "Are you sure?" } if current_user.posts.include?(post) %>
+          <li><%= render partial: "posts/shared/meme_post", locals: { post: post } %></li>
+          <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
          
      <% end %>
 </ul>

@@ -2,3 +2,5 @@
      <%= f.hidden_field :user_id, value: current_user.id %>
      <%= f.submit "Like" %>
 <% end %>
+
+<%= pluralize(@post.likes.count, 'like') if @post.likes.count != 0 %>

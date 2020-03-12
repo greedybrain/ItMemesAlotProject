@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-     before_action :authenticate_user!, except: [:index]
+     before_action :authenticate_user!
 
      def index 
-          @posts = Post.all
+          @posts = current_user.posts
      end
 
      def show 
@@ -12,9 +12,6 @@ class PostsController < ApplicationController
                @posts = @user.posts
                @comments = @post.comments
                @likers = all_users_that_liked_this_post
-          elsif params[:post_id]
-               @post = Post.find(params[:post_id])
-               @like = @post.likes.find(params[:id])
           else
                redirect_to root_path
           end
@@ -34,7 +31,7 @@ class PostsController < ApplicationController
      def create 
           @post = current_user.posts.build(post_params)
           if @post.save 
-               redirect_to user_post_path(current_user, @post)
+               redirect_to user_post_path(@post.user, @post)
           else
                render :new, alert: "Something went wrong"
           end

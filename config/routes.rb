@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   end
   
   resources :users do 
-    resources :posts, except: [:index]
+    resources :posts
   end
 
-  resources :posts, only: [:index], path: :meme_feed do 
+  resources :posts, path: :meme_feed do 
     resources :comments
     resources :likes
   end

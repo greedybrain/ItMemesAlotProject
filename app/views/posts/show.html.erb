@@ -1,13 +1,12 @@
 <h1>A Particular post</h1>
 
-<%= image_tag(@post.image_url, size: "200x200", alt: "First meme post") %><br>
+<%= render partial: "posts/shared/meme_post", locals: { post: @post } %><br>
 <div>
-     <p><%= render "likes/button" %> <%= pluralize(@post.likes.count, 'like') if @post.likes.count != 0 %></p>
-     
+     <p><%= render "likes/button_and_count" %></p>
 </div>
 <%= link_to "Meme Feed", posts_path %>
-<%= link_to "Edit Post", edit_user_post_path(@post.user, @post) if current_user.posts.include?(@post) %>
-<%= link_to "Delete Post", user_post_path(@post.user, @post), method: :delete, data: { confirm: "Are you sure?" } if current_user.posts.include?(@post) %>
+<%= render partial: "posts/shared/edit_or_delete", locals: { post: @post } %>
+
 <div>
      <p><%= render "comments/comments" %></p>
 </div>
@@ -17,7 +16,7 @@
 <div>
      <ul>
           <% @likers.each do |user| %>
-               <li><%= user.email %></li>
+               <li><%= user.name %></li>
           <% end %>
      </ul>
 </div>

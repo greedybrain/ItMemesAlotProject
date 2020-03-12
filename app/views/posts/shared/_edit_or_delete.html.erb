@@ -1,0 +1,3 @@
+<%= link_to "Show Post", user_post_path(post.user, post) %>
+<%= link_to "Edit Post", edit_user_post_path(post.user, post) if current_user.posts.include?(post) %>
+<%= link_to "Delete Post", user_post_path(post.user, post), method: :delete, data: { confirm: "Are you sure?" } if current_user.posts.include?(post) %>
