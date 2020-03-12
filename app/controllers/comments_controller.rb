@@ -25,4 +25,8 @@ class CommentsController < ApplicationController
           params.require(:comment).permit(:content, :user_id)
      end
 
+     def updatable_params
+          params.require(:comment).permit(:content)
+     end
+
 end

@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
   end
 
-  resources :posts, only: [:index] do 
+  resources :posts, only: [:index], path: :meme_feed do 
     resources :comments
+    resources :likes
   end
   
   root "pages#home"

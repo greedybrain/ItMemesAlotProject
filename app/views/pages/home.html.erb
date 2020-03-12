@@ -3,9 +3,10 @@
 <ul>
      <% @posts.each do |post| %>
           <li><%= image_tag(post.image_url, size: "250x250") %></li>
-          <%= link_to "Show Post", user_post_path(post.user, post) if user_signed_in? %> |
-          <%= link_to "Edit Post", edit_user_post_path(current_user, post) if user_signed_in? %> |
-          <%= link_to "Delete Post", user_post_path(current_user, post), method: :delete, data: { confirm: "Are you sure?" } if user_signed_in? %>
-         
+          <%= link_to "Show Post", user_post_path(post.user, post) %>
+          <% if user_signed_in? && current_user.id != nil %>
+               <%= link_to "Edit Post", edit_user_post_path(post.user, post) if current_user.posts.include?(post) %>
+               <%= link_to "Delete Post", user_post_path(post.user, post), method: :delete, data: { confirm: "Are you sure?" } if current_user.posts.include?(post) %>
+          <% end %>
      <% end %>
 </ul>

@@ -9,8 +9,12 @@ class PostsController < ApplicationController
           if params[:user_id]
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])
+               @like = @post.likes
                @comments = @post.comments
                @posts = @user.posts
+               @users_that_liked = @post.likes.collect do |like|
+                    User.find(like.user_id)
+               end
           else
                redirect_to root_path
           end
@@ -43,7 +47,7 @@ class PostsController < ApplicationController
      def update 
           @post = current_user.posts.find(params[:id])
           if @post.update(post_params)
-               redirect_to user_post_path(current_user, @post)
+               redirect_to user_post_path(current_user, @post), notice: "Post updated successfully"
           else 
                render :edit
           end
