@@ -1,5 +1,8 @@
 <h1>Anyone can see this page(logged in or not!)</h1>
-
+<% if !user_signed_in? %>
+     <%= link_to "Login", new_user_session_path %>
+     <%= link_to "Signup", new_user_registration_path %>
+<% end %>
 <ul>
      <% @posts.each do |post| %>
           <li><%= image_tag(post.image_url, size: "250x250") %></li>
