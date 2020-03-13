@@ -11,14 +11,10 @@
      <p><%= render "comments/comments" %></p>
 </div>
 <div>
-     <p><%= render "comments/form" %></p>
+     <p><%= render "comments/form" if user_signed_in? %></p>
 </div>
 <div>
-     <ul>
-          <% @likers.each do |user| %>
-               <li><%= user.name %></li>
-          <% end %>
-     </ul>
+     <%= render partial: "posts/shared/like_log", locals: { likers: @likers } %>
 </div>
 
 

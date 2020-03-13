@@ -1,10 +1,13 @@
 <%# POSTS INDEX %>
 <h1>Meme Feed</h1>
-<%= link_to "New Post", new_user_post_path(current_user) if current_user %>
-<ul>
-     <% @posts.each do |post| %>
-          <li><%= render partial: "posts/shared/meme_post", locals: { post: post } %></li>
-          <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
-         
-     <% end %>
-</ul>
+<% if user_signed_in? %>
+     <%= link_to "New Post", new_user_post_path(current_user) if !current_user.nil? %>
+     <ul>
+          <% @posts.each do |post| %>
+               <li><%= render partial: "posts/shared/meme_post", locals: { post: post } %></li>
+               <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
+          <% end %>
+     </ul>
+<% else %>
+     <%= render "pages/shared/login_or_signup" %>
+<% end %>
