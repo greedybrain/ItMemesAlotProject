@@ -6,6 +6,7 @@ class PostsController < ApplicationController
      end
 
      def show 
+          # byebug
           if params[:user_id]
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])
