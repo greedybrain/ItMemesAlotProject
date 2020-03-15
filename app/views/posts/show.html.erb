@@ -11,7 +11,7 @@
      <p><%= render "comments/comments" %></p>
 </div>
 <div>
-     <p><%= render "comments/form" if user_signed_in? %></p>
+     <p><%= render "comments/form" %></p>
 </div>
 <div>
      <%= render partial: "posts/shared/like_log", locals: { likers: @likers } %>

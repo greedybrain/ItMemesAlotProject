@@ -1,5 +1,13 @@
-<nav>
-     <div class="logo">
-          ItMemesAlot
+<nav class="nav flex items-center justify-between px-6 py-4">
+     <div class="nav-left">
+          <% if user_signed_in? %>
+               <%= link_to posts_path, class: "flex items-center" do %>
+                    <%= content_tag(:h1, "IMA |", class: "text-4xl") %>
+                    <%= content_tag(:h4, "Meme Feed", class: "text-xl") %>
+               <% end %>
+          <% end %>
+     </div>
+     <div class="login-signup">
+          <%= render "pages/shared/login_or_signup" %>
      </div>
 </nav>

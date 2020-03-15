@@ -1,5 +1,27 @@
-<h1>Show Page for <%= @user.email %></h1>
-<% if @user == current_user %>
-     <%= link_to "New Post", new_user_post_path(@user) %>
-     <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-<% end %>
+<%= render "users/shared/user_navbar" %>
+
+<div class="user-body-wrapper grid p-5">
+     <div class="recent-activity rounded border-2 py-3 px-2">
+          <h2 class="text-xl text-gray-700 mb-2 text-center"><%= fa_icon("history", class: "text-gray-600") %> Recent Activity</h2>
+          <ul>
+               <li class="mb-1">You posted a comment on ...</li>
+               <li class="mb-1">You uploaded a meme to ...</li>
+               <li class="mb-1">You liked Mikes post ...</li>
+               <li class="mb-1">John likes your post ...</li>
+               <li class="mb-1">You deleted a post ...</li>
+          </ul>
+     </div>
+     <div class="my-posts grid">
+          <%# <h2 class="text-xl text-gray-700 mb-2">My Posts</h2> %>
+          <% current_user.posts.each do |post| %>
+               <div class="post">
+                    <%= image_tag(post.image_url, size: "250x250", class: "rounded border-2") %>
+               </div>
+          <% end %>
+     </div>
+     <div class="ads-area">
+          <div class="ad1"></div>
+          <div class="ad2"></div>
+          <div class="ad3"></div>
+     </div>
+</div>

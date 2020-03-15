@@ -1,6 +1,11 @@
-<div>
-     <% @comments.each do |comment| %>
-          <p><%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span><span><%= link_to "Delete", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } if comment.user_id == current_user.id %></span></p>
+<% @comments.each do |comment| %>
+     <% if current_user.nil? %>
+          <% @comments.each do |comment| %>
+               <p><%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span></p>
+          <% end %>
+     <% else %>
+          <% if comment.user_id == current_user.id %>
+               <p><%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span><span><%= link_to "Delete", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } %></span></p>
+          <% end %>
      <% end %>
-</div>
-
+<% end %>

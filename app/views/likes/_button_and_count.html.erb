@@ -1,5 +1,5 @@
 <%= form_for [@post, @post.likes.build] do |f| %>
-     <%= f.hidden_field :user_id, value: @post.user.id %>
+     <%= f.hidden_field :user_id, value: current_user.id if !current_user.nil? %>
      <%= f.submit "Like" %>
 <% end %>
 

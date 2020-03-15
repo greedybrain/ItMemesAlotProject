@@ -12,10 +12,30 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
-
 * {
      margin: 0;
      padding: 0;
      box-sizing: border-box;
+}
+
+.user-body-wrapper {
+     grid-template-columns: 1fr 3fr 1fr;
+     grid-column-gap: 25px;
+}
+
+.user-nav {
+     min-width: 600px;
+}
+
+.recent-activity {
+     min-width: 225px;
+     height: 100vh;
+}
+
+.my-posts {
+     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+     grid-gap: 15px;
+     min-width: 400px;
 }
