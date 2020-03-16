@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-     <nav class="user-nav flex items-center justify-between px-6 py-4">
+     <nav class="user-nav flex items-center justify-between px-6">
           <div class="nav-left">
                <%= link_to posts_path, class: "flex items-center" do %>
                     <%= image_tag("ima-abbr-logo-ss.png", size: "100x100") %>
@@ -41,8 +41,7 @@
                          </div>
                          
                     </li>
-                    <li>
-                         <%= link_to image_tag(@user.profile_image, size: "50x50", class: "rounded-full cursor-pointer" ), edit_user_registration_path if @user.profile_image %>
+                    <li class="profile-bg-img rounded-full cursor-pointer" style="background-image: url('<%= @user.profile_image %>')">
                     </li>
                </ul>
           </div>

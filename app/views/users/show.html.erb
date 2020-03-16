@@ -1,8 +1,8 @@
 <%= render "users/shared/user_navbar" %>
 
-<div class="user-body-wrapper grid p-5">
+<div class="user-body-wrapper grid px-5 py-5 absolute">
      <div class="recent-activity rounded border-2 py-3 px-2">
-          <h2 class="text-xl text-gray-700 mb-2 text-center"><%= fa_icon("history", class: "text-gray-600") %> Recent Activity</h2>
+          <h2 class="text-xl text-white mb-2 text-center "><%= fa_icon("history", class: "text-white") %> Recent Activity</h2>
           <ul>
                <li class="mb-1">You posted a comment on ...</li>
                <li class="mb-1">You uploaded a meme to ...</li>
@@ -11,11 +11,11 @@
                <li class="mb-1">You deleted a post ...</li>
           </ul>
      </div>
-     <div class="my-posts grid">
-          <%# <h2 class="text-xl text-gray-700 mb-2">My Posts</h2> %>
-          <% current_user.posts.each do |post| %>
+     <div class="my-posts grid overflow-y-scroll">
+          <h2 class="title text-xl text-gray-700 mb-2">My Posts</h2>
+          <% @posts.each do |post| %>
                <div class="post">
-                    <%= image_tag(post.image_url, size: "250x250", class: "rounded border-2") %>
+                    <%= image_tag(post.image_url, size: "300x300", class: "rounded border-2") %>
                </div>
           <% end %>
      </div>
