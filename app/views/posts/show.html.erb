@@ -3,6 +3,7 @@
 <%= render partial: "posts/shared/meme_post", locals: { post: @post } %><br>
 <div>
      <p><%= render "likes/button_and_count" %></p>
+     <%# <p><%= link_to "Unlike", post_like_path(@like), method: :delete %>
 </div>
 <%= link_to "Meme Feed", posts_path %>
 <%= render partial: "posts/shared/edit_or_delete", locals: { post: @post } %>

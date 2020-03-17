@@ -39,10 +39,18 @@
                          <div class="icon text-center leading-none text-gray-600">
                               <%= link_to fa_icon("sign-out"), destroy_user_session_path, method: :delete %>
                          </div>
-                         
                     </li>
-                    <li class="profile-bg-img rounded-full cursor-pointer" style="background-image: url('<%= @user.profile_image %>')">
+                    <li class="text-3xl mr-4">
+                         <div class="icon-name text-xs text-center text-gray-700">
+                              My Profile
+                         </div>
+                         <div class="icon text-center leading-none text-black">
+                              <%= link_to fa_icon("user"), user_path(current_user) %>
+                         </div>
                     </li>
+                    <%# <li class="profile-bg-img rounded-full cursor-pointer"> %>
+                         <%# <%= image_tag(current_user.profile_image, size: "25x25") %>
+                    <%# </li> %>
                </ul>
           </div>
      </nav>

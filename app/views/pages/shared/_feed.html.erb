@@ -1,9 +1,8 @@
-<% if user_signed_in? %>
-     <%= link_to "New Post", new_user_post_path(current_user) if !current_user.nil? %>
-<% end %>
-<ul>
+<ul class="mf-posts grid p-6">
      <% @posts.each do |post| %>
-          <li><%= render partial: "posts/shared/meme_post", locals: { post: post } %></li>
-          <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
+          <div class="post-action-items border border-2 rounded pt-2 text-center grid justify-center">
+               <li><%= render partial: "posts/shared/meme_post", locals: { post: post } %></li>
+               <li class="self-center text-sm"><%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %></li>
+          </div>
      <% end %>
 </ul>

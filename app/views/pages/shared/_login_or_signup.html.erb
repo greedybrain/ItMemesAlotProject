@@ -2,6 +2,6 @@
      <%= link_to "Upload", new_user_post_path(current_user, @post), class: "border py-3 px-6 mr-4 border-black text-black" %>
      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "border py-3 px-6 mr-4 border-black text-black" %>
 <% else %>
-     <%= link_to "Login", new_user_session_path, class: "border py-3 px-6 mr-4 border-black text-black" %>
-     <%= link_to "Signup", new_user_registration_path, class: "border py-3 px-6 border-black  border-black text-black" %>
+     <%= link_to "Login", new_user_session_path, class: "border py-3 px-6 mr-3 border-red-500 text-white border-2 rounded-lg bg-red-500" %>
+     <%= link_to "Signup", new_user_registration_path, class: "border py-3 px-6 border-blue-300 text-white border-2 rounded-lg bg-blue-300" %>
 <% end %>
