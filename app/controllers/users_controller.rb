@@ -3,7 +3,7 @@ class UsersController < Devise::RegistrationsController
 
      def show
           @user = User.find(params[:id])
-          @posts = @user.posts
+          @posts = @user.posts.order("created_at DESC")
      end
 
 end

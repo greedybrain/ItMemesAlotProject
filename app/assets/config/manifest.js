@@ -3,3 +3,4 @@
 //= link ima-abbr-logo-ss.png
 //= link metro-pcs.jpg
 //= link ima-whole-logo.png
+//= link application.css

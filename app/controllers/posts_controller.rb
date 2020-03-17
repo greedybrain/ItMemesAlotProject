@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
      before_action :authenticate_user!, except: [:index, :show]
 
-     def index 
+     def index
           @posts = Post.all.order("created_at DESC")
      end
 
-     def show 
-          # byebug
+     def show
           if params[:user_id]
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])

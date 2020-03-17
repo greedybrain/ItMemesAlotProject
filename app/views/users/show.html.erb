@@ -1,9 +1,13 @@
 <%= render "users/shared/user_navbar" %>
 
 <% if user_signed_in? %>
+
      <div class="user-body-wrapper grid px-5 py-5 absolute">
+
           <div class="recent-activity rounded border-2 py-3 px-2">
+
                <h2 class="text-xl text-white mb-2 text-center "><%= fa_icon("history", class: "text-white") %> Recent Activity</h2>
+
                <ul>
                     <li class="mb-1 text-white">You posted a comment on ...</li>
                     <li class="mb-1 text-white">You uploaded a meme to ...</li>
@@ -11,24 +15,55 @@
                     <li class="mb-1 text-white">John likes your post ...</li>
                     <li class="mb-1 text-white">You deleted a post ...</li>
                </ul>
+
           </div>
+
           <div class="my-posts grid overflow-y-scroll border rounded">
+
                <h2 class="title text-xl text-gray-700 text-center mt-1">My Posts</h2>
+
                <div class="posts grid p-3">
+
                     <% @posts.each do |post| %>
-                         <div class="post">
-                              <%= image_tag(post.image_url, size: "300x300", class: "rounded border-2") %>
+
+                         <div class="post-wrapper">
+
+                              <div class="post">
+
+                                   <%= image_tag(post.image_url, size: "300x300", class: "rounded border-2") %>
+
+                              </div>
+
+                              <div class="created text-xs text-gray-600 flex justify-end">
+
+                                   <%= time_ago_in_words(post.created_at) %>
+
+                              </div>
+
                          </div>
+
                     <% end %>
+
                </div>
+
           </div>
+
           <div class="ads-area">
+
                <div class="ad1 mb-3">
+
                     <%= image_tag("mc-donalds-ad.jpg", size: "300x300", class: "rounded border-2") %>
+
                </div>
+
                <div class="ad2">
+
                     <%= image_tag("metro-pcs.jpg", size: "300x300", class: "rounded border-2") %>
+
                </div>
+               
           </div>
+
      </div>
+
 <% end %>

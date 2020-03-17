@@ -1,6 +1,6 @@
-<%= form_for [@post, @post.likes.build] do |f| %>
+<%= form_for ([@post, @post.likes.build]) do |f| %>
      <%= f.hidden_field :user_id, value: current_user.id if !current_user.nil? %>
-     <%= f.submit "Like" %>
+     <%= f.submit %>
 <% end %>
 
 <%= pluralize(@post.likes.count, 'like') if @post.likes.count != 0 %>

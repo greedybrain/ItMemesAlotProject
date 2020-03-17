@@ -1,8 +1,29 @@
-<ul class="mf-posts grid p-6">
+<div class="mf-posts grid p-6">
+
      <% @posts.each do |post| %>
-          <div class="post-action-items border border-2 rounded pt-2 text-center grid justify-center">
-               <li><%= render partial: "posts/shared/meme_post", locals: { post: post } %></li>
-               <li class="self-center text-sm"><%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %></li>
+
+          <div class="action-item-wrapper">
+
+               <div class="post-action-items border border-2 rounded pt-2 text-center grid justify-center">
+
+                    <div>
+                         <%= render partial: "posts/shared/meme_post", locals: { post: post } %>
+                    </div>
+
+                    <div class="self-center text-sm">
+                         <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
+                    </div>
+
+               </div>
+
+               <div class="created text-xs text-gray-600 flex justify-end">
+
+                    <%= time_ago_in_words(post.created_at) %>
+
+               </div>
+
           </div>
+
      <% end %>
-</ul>
+
+</div>
