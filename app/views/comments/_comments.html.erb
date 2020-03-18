@@ -5,7 +5,7 @@
           <% end %>
      <% else %>
           <% if comment.user_id == current_user.id %>
-               <p><%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span><span><%= link_to "Delete", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } %></span></p>
+               <p><%= link_to comment.user.name, user_path(comment.user) %>: <%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span><span><%= link_to "Delete", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } %></span></p>
           <% end %>
      <% end %>
 <% end %>

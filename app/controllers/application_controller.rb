@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
                     redirect_to user_post_path(@post.user, @post), alert: "You already liked this post"
                else
                     @like = @post.likes.create(like_params)
+                    @post.likes_count += 1
+                    @post.save
                     redirect_to user_post_path(@post.user, @post)
                end
           end

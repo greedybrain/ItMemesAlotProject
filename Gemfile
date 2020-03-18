@@ -25,6 +25,7 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'pry'
 gem "font-awesome-rails"
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

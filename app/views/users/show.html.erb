@@ -2,7 +2,7 @@
 
 <% if user_signed_in? %>
 
-     <div class="user-body-wrapper grid px-5 py-5 absolute">
+     <div class="user-body-wrapper grid px-5 py-5">
 
           <div class="recent-activity rounded border-2 py-3 px-2">
 
@@ -20,7 +20,7 @@
 
           <div class="my-posts grid overflow-y-scroll border rounded">
 
-               <h2 class="title text-xl text-gray-700 text-center mt-1">My Posts</h2>
+               <h2 class="title text-xl text-gray-700 text-center mt-1"><%= @user.name %>'s Posts</h2>
 
                <div class="posts grid p-3">
 

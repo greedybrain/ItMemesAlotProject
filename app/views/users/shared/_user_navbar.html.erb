@@ -1,13 +1,11 @@
 <% if user_signed_in? %>
      <nav class="user-nav flex items-center justify-between px-6">
-          <div class="nav-left">
-               <%= link_to posts_path, class: "flex items-center" do %>
-                    <%= image_tag("ima-abbr-logo-ss.png", size: "100x100") %>
-                    <%= content_tag(:h4, "Meme Feed", class: "text-xl text-gray-700 ml-2") %>
-               <% end %>
+          <div class="nav-left flex items-center">
+               <%= link_to image_tag("ima-abbr-logo-ss.png", size: "100x100"), posts_path %>
           </div>
           <div class="user-items">
                <ul class="flex">
+                    <li class="mr-4 pr-3 flex self-center border-r-4 border-orange-400 border-dashed" ><%= link_to content_tag(:p, "Meme Feed", class: "text-lg text-gray-700 ml-2"), posts_path %></li>
                     <li class="text-3xl mr-4 nav-item-1">
                          <div class="icon-name text-xs text-center text-gray-700">
                               Favorites
@@ -21,7 +19,7 @@
                               Mof
                          </div>
                          <div class="icon text-center leading-none text-orange-500">
-                              <%= link_to fa_icon("fire") %>
+                              <%= link_to fa_icon("fire-extinguisher"), memes_on_fire_path %>
                          </div>
                     </li>
                     <li class="text-3xl mr-4">

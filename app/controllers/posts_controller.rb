@@ -5,6 +5,10 @@ class PostsController < ApplicationController
           @posts = Post.all.order("created_at DESC")
      end
 
+     def mofs 
+          @mofs = Post.memes_on_fire
+     end
+
      def show
           if params[:user_id]
                @user = User.find(params[:user_id])
