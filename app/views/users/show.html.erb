@@ -22,7 +22,7 @@
 
                               <div class="post">
 
-                                   <%= image_tag(post.image_url, size: "300x300", class: "rounded border-2") %>
+                                   <%= link_to image_tag(post.image_url, size: "300x300", class: "rounded border-2"), user_post_path(post.user, post) %>
 
                               </div>
 

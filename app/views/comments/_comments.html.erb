@@ -3,7 +3,7 @@
           <span class="text-red-600 text-sm mb-1 pb-1">
                <%= link_to comment.user.name, user_path(comment.user) %>
           </span> 
-          <span class="text-gray-800">
+          <span class="text-gray-800 inline text-sm leading-none">
                <%= comment.content %> 
           </span>
           <p class="text-xs border-t pt-2">
@@ -13,7 +13,10 @@
                     <%= time_ago_in_words(comment.created_at) + " ago" %>
                <% end %>
                <span>
-               <%= link_to '• Delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } if comment.user == current_user %>
+                    <%= link_to '• Edit', edit_post_comment_path(comment.post, comment) if comment.user == current_user %>
+               </span>
+               <span>
+                    <%= link_to ' • Delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } if comment.user == current_user %>
                </span>
           </p>
      </div>                                                                                    

@@ -7,6 +7,6 @@ class Post < ApplicationRecord
      has_many :users, through: :comments
      has_many :users, through: :likes
 
-     scope :memes_on_fire, -> { order("likes_count DESC") }
+     scope :memes_on_fire, -> { order("likes_count DESC").limit(10) }
 
 end
