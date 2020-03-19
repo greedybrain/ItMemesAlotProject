@@ -13,8 +13,9 @@ class PostsController < ApplicationController
           if params[:user_id]
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])
+               @like = Like.find_by(user_id: current_user.id, post_id: @post.id)
                @posts = @user.posts
-               @comments = @post.comments
+               @comments = @post.comments.order("created_at DESC")
                @likers = all_users_that_liked_this_post
           else
                redirect_to root_path

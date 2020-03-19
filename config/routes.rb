@@ -11,8 +11,10 @@ Rails.application.routes.draw do
 
   resources :posts, path: :meme_feed do 
     resources :comments
-    resources :likes
+    resources :likes, except: [:destroy]
   end
+
+  resources :likes, only: [:destroy]
 
   get '/memes_on_fire', to: "posts#mofs"
   

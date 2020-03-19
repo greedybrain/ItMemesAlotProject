@@ -1,11 +1,21 @@
 <% @comments.each do |comment| %>
-     <% if current_user.nil? %>
-          <% @comments.each do |comment| %>
-               <p><%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span></p>
-          <% end %>
-     <% else %>
-          <% if comment.user_id == current_user.id %>
-               <p><%= link_to comment.user.name, user_path(comment.user) %>: <%= comment.content %> <span>(<%= time_ago_in_words(comment.created_at) %> ago)</span><span><%= link_to "Delete", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } %></span></p>
-          <% end %>
-     <% end %>
+     <div class="comment-content border border-2 rounded-lg mb-2 px-2 py-1">
+          <span class="text-red-600 text-sm mb-1 pb-1">
+               <%= link_to comment.user.name, user_path(comment.user) %>
+          </span> 
+          <span class="text-gray-800">
+               <%= comment.content %> 
+          </span>
+          <p class="text-xs border-t pt-2">
+               <% if time_ago_in_words(comment.created_at).start_with?("about") %>
+                    <%= time_ago_in_words(comment.created_at)[6..-1] + " ago" %> 
+               <% else %>
+                    <%= time_ago_in_words(comment.created_at) + " ago" %>
+               <% end %>
+               <span>
+               <%= link_to '• Delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } if comment.user == current_user %>
+               </span>
+          </p>
+     </div>                                                                                    
+
 <% end %>

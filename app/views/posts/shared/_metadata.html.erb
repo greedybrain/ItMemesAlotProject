@@ -4,7 +4,7 @@
           <%= fa_icon("heart", class: "mr-1 text-sm") %>
           <%= link_to user_post_path(post.user, post) do %>
                <%= pluralize(post.likes_count, 'Like') %> &#8226;
-               <%= post.likes.count %> 
+               <%= post.comments.count %>
                <%= fa_icon("comment") %>
           <% end %>
      </div>

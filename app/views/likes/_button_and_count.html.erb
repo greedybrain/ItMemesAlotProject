@@ -1,6 +1,10 @@
 <%= form_for ([@post, @post.likes.build]) do |f| %>
      <%= f.hidden_field :user_id, value: current_user.id if !current_user.nil? %>
-     <%= f.submit %>
+     <%= f.submit "Like", class: "py-1 px-4 mt-2 mr-2 border rounded bg-blue-400 border-blue-400 text-white outline-none shadow-lg" %>
+     <span class="mr-2">
+          <%= link_to "Unlike", like_path(@like), class: "text-white border rounded py-2 px-4 bg-orange-500 border-orange-500 shadow-md", method: :delete if @post.users.include?(current_user) %>
+     </span>
+     <span class="text-white">
+          <%= pluralize(@post.likes.count, 'Like') if @post.likes.count != 0 %>
+     </span>
 <% end %>
-
-<%= pluralize(@post.likes.count, 'like') if @post.likes.count != 0 %>

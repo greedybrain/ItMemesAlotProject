@@ -13,11 +13,12 @@ class ApplicationController < ActionController::Base
      def like_post_if_not_liked_already
           if params[:post_id]
                @post = Post.find(params[:post_id])
-               if @post.likes.collect{|like| like.user_id }.count(current_user.id) >= 1
+               liked_already = @post.likes.collect{|like| like.user_id }.count(current_user.id) >= 1
+               if liked_already
                     redirect_to user_post_path(@post.user, @post), alert: "You already liked this post"
                else
                     @like = @post.likes.create(like_params)
-                    @post.likes_count += 1
+                    @post.likes_count = @post.likes.length
                     @post.save
                     redirect_to user_post_path(@post.user, @post)
                end
