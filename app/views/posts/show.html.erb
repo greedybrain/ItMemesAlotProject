@@ -7,6 +7,7 @@
 
 <div class="meme-post px-20 flex items-center justify-center">
      <div class="meme mr-4">
+          <%= link_to truncate_name_if_too_long(@post), user_path(@post.user), class: "text-white" %>
           <%= render partial: "posts/shared/meme_post", locals: { post: @post } %>
           <div class="flex items-center justify-center">
                <p>

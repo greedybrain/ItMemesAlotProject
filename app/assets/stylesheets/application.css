@@ -57,7 +57,7 @@
 
 .mf-posts {
      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-     gap: 15px;
+     gap: 35px;
 }
 
 ::-webkit-scrollbar {

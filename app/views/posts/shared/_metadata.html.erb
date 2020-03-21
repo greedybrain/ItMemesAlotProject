@@ -1,4 +1,4 @@
-<div class="like-created-comments text-gray-600 flex justify-between">
+<div class="like-created-comments text-gray-600 flex justify-between mt-1">
 
      <div class="like-count text-xs text-red-500">
           <%= fa_icon("heart", class: "mr-1 text-sm") %>
@@ -10,7 +10,7 @@
      </div>
 
      <div class="created text-xs">
-          <%= time_ago_in_words(post.created_at) %>
+          <%= time_ago_in_words(post.created_at) %> ago
      </div>
 
 </div>

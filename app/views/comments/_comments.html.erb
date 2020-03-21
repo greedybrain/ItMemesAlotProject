@@ -7,14 +7,10 @@
                <%= comment.content %> 
           </span>
           <p class="text-xs border-t pt-2">
-               <% if time_ago_in_words(comment.created_at).start_with?("about") %>
-                    <%= time_ago_in_words(comment.created_at)[6..-1] + " ago" %> 
-               <% else %>
-                    <%= time_ago_in_words(comment.created_at) + " ago" %>
-               <% end %>
-               <span>
-                    <%= link_to '• Edit', edit_post_comment_path(comment.post, comment) if comment.user == current_user %>
-               </span>
+               <%= shorten_time_format(comment) %>
+               <%# <span> %>
+                    <%# <%= link_to '• Edit', post_comment_path(comment.post, comment) if comment.user == current_user %>
+               <%# </span> %>
                <span>
                     <%= link_to ' • Delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } if comment.user == current_user %>
                </span>

@@ -7,6 +7,8 @@ class Post < ApplicationRecord
      has_many :users, through: :comments
      has_many :users, through: :likes
 
-     scope :memes_on_fire, -> { order("likes_count DESC").limit(10) }
+     # validates_acceptance_of :image_url, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+
+     scope :memes_on_fire, -> { order("(likes_count + comments_count) / 2 DESC").limit(10) }
 
 end

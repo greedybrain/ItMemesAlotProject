@@ -4,8 +4,12 @@
      <% @posts.each do |post| %>
 
           <div class="action-item-wrapper">
+          
+               <div class="post-user-name">
+                    <%= link_to truncate_name_if_too_long(post), user_path(post.user), class: "text-blue-500" %>
+               </div>
 
-               <div class="post-action-items border border-2 rounded pt-2 text-center grid justify-center">
+               <div class="post-action-items border border-2 rounded text-center grid">
 
                     <div>
                          <%= render partial: "posts/shared/meme_post", locals: { post: post } %>

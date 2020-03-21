@@ -5,18 +5,20 @@ class CommentsController < ApplicationController
           if params[:post_id]
                @post = Post.find(params[:post_id])
                @comment = @post.comments.create(comment_params)
+               @comment.post.comments_count = @post.comments.length
+               @post.save
                redirect_to user_post_path(@post.user, @post)
           else 
                redirect_to root_path, alert: "You must be logged in to do that"
           end
      end
 
-     def edit 
-          if params[:post_id]
-               @post = Post.find(params[:post_id])
-               @comment = @post.comments.find(params[:id])
-          end
-     end
+     # def edit 
+     #      if params[:post_id]
+     #           @post = Post.find(params[:post_id])
+     #           @comment = @post.comments.find(params[:id])
+     #      end
+     # end
 
      def update 
           @post = Post.find(params[:post_id])

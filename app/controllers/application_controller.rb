@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
+     include ApplicationHelper
      before_action :configure_permitted_parameters, if: :devise_controller?
-     helper_method :like_post_if_not_liked_already, :all_users_that_liked_this_post
+     helper_method :like_post_if_not_liked_already, :all_users_that_liked_this_post, :truncate_name_if_too_long, :shorten_time_format
 
      protected
 
@@ -19,7 +20,7 @@ class ApplicationController < ActionController::Base
                else
                     @like = @post.likes.create(like_params)
                     @post.likes_count = @post.likes.length
-                    @post.save
+                    @post.save!
                     redirect_to user_post_path(@post.user, @post)
                end
           end

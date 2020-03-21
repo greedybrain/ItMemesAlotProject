@@ -1,5 +1,5 @@
 <ul>
      <% likers.each do |user| %>
-          <li><%= link_to user.name, user_path(user) %></li>
+          <li><%= link_to user.name, user_path(user) + ' ago' %></li>
      <% end %>
 </ul>
