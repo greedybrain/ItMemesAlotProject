@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   resources :posts, path: :meme_feed do 
     resources :comments
     resources :likes, except: [:destroy]
+    resources :tags
   end
 
   resources :likes, only: [:destroy]
 
   get '/memes_on_fire', to: "posts#mofs"
+  get '/tags/:tag', to: "posts#index"
   
   root "posts#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

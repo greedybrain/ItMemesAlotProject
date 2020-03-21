@@ -1,16 +1,16 @@
 <div class="like-created-comments text-gray-600 flex justify-between mt-1">
 
      <div class="like-count text-xs text-red-500">
-          <%= fa_icon("heart", class: "mr-1 text-sm") %>
           <%= link_to user_post_path(post.user, post) do %>
-               <%= pluralize(post.likes_count, 'Like') %> &#8226;
+               <%= post.likes_count %>
+               <%= fa_icon("heart", class: "text-sm") %> &#8226;
                <%= post.comments.count %>
-               <%= fa_icon("comment") %>
+               <%= fa_icon("comment", class: 'text-sm') %>
           <% end %>
      </div>
 
      <div class="created text-xs">
-          <%= time_ago_in_words(post.created_at) %> ago
+          <%= shorten_time_format(post) %>
      </div>
 
 </div>

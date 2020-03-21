@@ -23,6 +23,12 @@
 
                <%= render partial: "posts/shared/metadata", locals: { post: post } %>
 
+               <div class="tag_list mt-1">
+                    <% post.tag_list.each do |tag| %>
+                         <%= link_to tag, post_tag_path(post, tag), class: "text-xs border mt-1 py-1 px-2 rounded-full border-blue-500 text-blue-500" %>
+                    <%end%>
+               </div>
+
           </div>
 
      <% end %>

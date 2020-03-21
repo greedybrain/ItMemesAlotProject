@@ -1,4 +1,12 @@
 <%= form_for [@post.user, @post] do |f| %>
-     <%= f.file_field :image_url %><br>
+     <div class="upload">
+          <%= f.label "Upload a Meme" %><br>
+          <%= f.file_field :image_url %><br><br>
+     </div>
+     <div class="taglist">
+          <%= f.label "Tags (seperated by commas)" %><br>
+          <%= f.text_field :tag_list, class: 'border-2 outline-none' %><br><br>
+     </div>
+
      <%= f.submit %>
 <% end %>
