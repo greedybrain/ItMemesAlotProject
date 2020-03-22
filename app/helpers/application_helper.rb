@@ -13,4 +13,22 @@ module ApplicationHelper
           end
      end
 
+     def make_large_number_readable(number)
+          helpers.number_to_human(
+               number, 
+               :format => '%n%u', 
+               :precision => 2,
+               :units => { 
+                    :thousand => 'K',
+                    :million => 'M',
+                    :billion => 'B',
+                    :trillion => 'T'
+               }
+          )
+     end
+
+     def recalc_escore
+          @post.escore = (@post.comments_count + @post.likes_count) / 2
+     end
+
 end

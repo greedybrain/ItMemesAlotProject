@@ -1,61 +1,57 @@
 <%= render "users/shared/user_navbar" %>
 
-<% if user_signed_in? %>
+<div class="user-body-wrapper grid px-5 py-5">
 
-     <div class="user-body-wrapper grid px-5 py-5">
+     <div class="notifications rounded border-2 py-3 px-2">
 
-          <div class="notifications rounded border-2 py-3 px-2">
+          <h2 class="text-xl text-white text-center "><%= fa_icon("bell", class: "text-white") %> Notifications</h2>
 
-               <h2 class="text-xl text-white text-center "><%= fa_icon("bell", class: "text-white") %> Notifications</h2>
+     </div>
 
-          </div>
+     <div class="my-posts overflow-y-scroll border rounded">
 
-          <div class="my-posts overflow-y-scroll border rounded">
+          <h2 class="title text-xl text-gray-700 text-center mt-4"><%= @user.name %>'s Posts</h2>
 
-               <h2 class="title text-xl text-gray-700 text-center mt-4"><%= @user.name %>'s Posts</h2>
+          <div class="posts grid p-3">
 
-               <div class="posts grid p-3">
+               <% @posts.each do |post| %>
 
-                    <% @posts.each do |post| %>
+                    <div class="post-wrapper">
 
-                         <div class="post-wrapper">
+                         <div class="post">
 
-                              <div class="post">
-
-                                   <%= link_to image_tag(post.image_url, size: "300x300", class: "rounded border-2"), user_post_path(post.user, post) %>
-
-                              </div>
-
-                              <div class="created text-xs text-gray-600 flex justify-end">
-
-                                   <%= time_ago_in_words(post.created_at) %>
-
-                              </div>
+                              <%= link_to image_tag(post.image_url, size: "300x300", class: "rounded border-2"), user_post_path(post.user, post) %>
 
                          </div>
 
-                    <% end %>
+                         <div class="created text-xs text-gray-600 flex justify-end">
 
-               </div>
+                              <%= time_ago_in_words(post.created_at) %>
 
-          </div>
+                         </div>
 
-          <div class="ads-area">
+                    </div>
 
-               <div class="ad1 mb-3">
+               <% end %>
 
-                    <%= image_tag("mc-donalds-ad.jpg", size: "300x300", class: "rounded border-2") %>
-
-               </div>
-
-               <div class="ad2">
-
-                    <%= image_tag("metro-pcs.jpg", size: "300x300", class: "rounded border-2") %>
-
-               </div>
-               
           </div>
 
      </div>
 
-<% end %>
+     <div class="ads-area">
+
+          <div class="ad1 mb-3">
+
+               <%= image_tag("mc-donalds-ad.jpg", size: "300x300", class: "rounded border-2") %>
+
+          </div>
+
+          <div class="ad2">
+
+               <%= image_tag("metro-pcs.jpg", size: "300x300", class: "rounded border-2") %>
+
+          </div>
+          
+     </div>
+
+</div>

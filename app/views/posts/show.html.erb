@@ -14,11 +14,19 @@
                     <%= render "likes/button_and_count" %>
                </p>
           </div>
+          <p><%= @post.escore %></p>
      </div>
 
      <div class="comments border rounded-lg p-6 bg-white flex flex-col overflow-scroll ml-4">
           <div class="">
                <%= render "comments/form" %>
+          </div>
+          <div class="tag_list mb-3">
+               <span class="text-xs"><%= "Tags:" if @post.tag_list.any? %></span>
+               <% @post.tag_list.each do |tag| %>
+                    <% count = 0 %>
+                    <%= link_to tag, "#", class: "text-xs border py-1 px-1 rounded-full border-blue-500 text-blue-500" %>
+               <%end%>
           </div>
           <%= render "comments/comments" %>
      </div>

@@ -1,9 +1,11 @@
-<div class="action-links flex items-center justify-center <%= "py-2" if current_user.posts.include?(post) %>">
-     <div class="link2 mr-5">
-          <%= link_to fa_icon("edit", class: "text-gray-500 text-xl"), edit_user_post_path(post.user, post) if current_user.posts.include?(post) %>
+<% if user_signed_in?%>
+     <div class="action-links flex items-center justify-center <%= "py-2" if current_user.posts.include?(post) %>">
+          <div class="link2 mr-5">
+               <%= link_to fa_icon("edit", class: "text-gray-500 text-xl"), edit_user_post_path(post.user, post) if current_user.posts.include?(post) %>
+          </div>
+          <div class="link3">
+               <%= link_to fa_icon("times", class: "text-red-500 text-xl"), user_post_path(post.user, post), method: :delete, data: { confirm: "Are you sure?" } if current_user.posts.include?(post) %>
+          </div>
      </div>
-     <div class="link3">
-          <%= link_to fa_icon("times", class: "text-red-500 text-xl"), user_post_path(post.user, post), method: :delete, data: { confirm: "Are you sure?" } if current_user.posts.include?(post) %>
-     </div>
-</div>
+<% end %>
 

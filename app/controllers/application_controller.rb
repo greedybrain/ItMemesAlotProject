@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
      include ApplicationHelper
+     include LikesHelper
+     include CommentsHelper
+
      before_action :configure_permitted_parameters, if: :devise_controller?
-     helper_method :like_post_if_not_liked_already, :all_users_that_liked_this_post, :truncate_name_if_too_long, :shorten_time_format
+
+     helper_method :truncate_name_if_too_long, :shorten_time_format, :make_large_number_readable
 
      protected
 
@@ -9,27 +13,5 @@ class ApplicationController < ActionController::Base
           devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :profile_image])
      end
 
-     # POST CONTROLLER HELPER METHODS
-
-     def like_post_if_not_liked_already
-          if params[:post_id]
-               @post = Post.find(params[:post_id])
-               liked_already = @post.likes.collect{|like| like.user_id }.count(current_user.id) >= 1
-               if liked_already
-                    redirect_to user_post_path(@post.user, @post), alert: "You already liked this post"
-               else
-                    @like = @post.likes.create(like_params)
-                    @post.likes_count = @post.likes.length
-                    @post.save!
-                    redirect_to user_post_path(@post.user, @post)
-               end
-          end
-     end
-
-     def all_users_that_liked_this_post
-          @users_that_liked = @post.likes.collect do |like|
-               User.find(like.user_id)
-          end
-     end
      
 end

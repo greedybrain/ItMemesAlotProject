@@ -2,9 +2,9 @@
 
      <div class="like-count text-xs text-red-500">
           <%= link_to user_post_path(post.user, post) do %>
-               <%= post.likes_count %>
+               <%= make_large_number_readable(post.likes_count) %>
                <%= fa_icon("heart", class: "text-sm") %> &#8226;
-               <%= post.comments.count %>
+               <%= make_large_number_readable(post.comments_count) %>
                <%= fa_icon("comment", class: 'text-sm') %>
           <% end %>
      </div>

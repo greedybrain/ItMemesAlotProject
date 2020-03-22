@@ -1,36 +1,52 @@
-<h1 class="text-3xl text-center pt-6 tracking-wide">Meme Feed</h1>
-<div class="mf-posts grid p-6">
+<h1 class="text-3xl text-center pt-6 tracking-wide mb-4">Meme Feed<span class="text-lg"> (<%= make_large_number_readable(@posts.length) + " Memes" %>)</span></h1>
 
-     <% @posts.each do |post| %>
+<div class="index-wrapper grid">
 
-          <div class="action-item-wrapper">
-          
-               <div class="post-user-name">
-                    <%= link_to truncate_name_if_too_long(post), user_path(post.user), class: "text-blue-500" %>
+     <div class="tag_list mt-3 px-4 m-auto grid border-r-2 border-gray-300">
+          <% @tags.each do |tag| %>
+               <div class= "text-xs border mb-2 py-1 px-2 rounded-full border-orange-500 text-orange-500 text-center tracking-wider">
+                    <%= link_to "#{tag.name} • #{tag.taggings_count}", "#", class: 'block' %>
                </div>
+          <% end %>
+     </div>
 
-               <div class="post-action-items border border-2 rounded text-center grid">
 
-                    <div>
-                         <%= render partial: "posts/shared/meme_post", locals: { post: post } %>
+     <div class="mf-posts grid px-6 pb-6">
+
+          <% @posts.each do |post| %>
+
+               <div class="action-item-wrapper">
+               
+                    <div class="post-user-name">
+                         <%= link_to truncate_name_if_too_long(post), user_path(post.user), class: "text-blue-500" %>
+                         <p><%= @score %></p>
                     </div>
 
-                    <div class="self-center text-sm">
-                         <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
+                    <div class="post-action-items border border-2 rounded text-center grid">
+
+                         <div>
+                              <%= render partial: "posts/shared/meme_post", locals: { post: post } %>
+                         </div>
+
+                         <div class="self-center text-sm">
+                              <%= render partial: "posts/shared/edit_or_delete", locals: { post: post } %>
+                         </div>
+
+                    </div>
+
+                    <%= render partial: "posts/shared/metadata", locals: { post: post } %>
+
+                    <div class="tag_list mt-1">
+                         <% post.tag_list.each do |tag| %>
+                              <%= link_to tag, "#", class: "text-xs border mt-1 py-1 px-2 rounded-full border-blue-500 text-blue-500"%>
+                         <%end%>
                     </div>
 
                </div>
 
-               <%= render partial: "posts/shared/metadata", locals: { post: post } %>
-
-               <div class="tag_list mt-1">
-                    <% post.tag_list.each do |tag| %>
-                         <%= link_to tag, post_tag_path(post, tag), class: "text-xs border mt-1 py-1 px-2 rounded-full border-blue-500 text-blue-500" %>
-                    <%end%>
-               </div>
-
-          </div>
-
-     <% end %>
-
+          <% end %>
+     </div>
+</div>
+<div class="mb-3 text-center py-6">
+     <%= will_paginate @posts %>
 </div>

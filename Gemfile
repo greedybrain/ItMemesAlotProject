@@ -27,6 +27,7 @@ gem 'pry'
 gem "font-awesome-rails"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

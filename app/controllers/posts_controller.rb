@@ -2,12 +2,8 @@ class PostsController < ApplicationController
      before_action :authenticate_user!, except: [:index, :show]
 
      def index
-          # binding.pry
-          if params[:tag]
-               @posts = Post.tagged_with(params[:tag])
-          else
-               @posts = Post.all.order("created_at DESC")
-          end
+          @posts = Post.search(params[:search]).paginate(page: params[:page], per_page: 9)
+          @tags = Tag.all.order('name')
      end
 
      def mofs 
@@ -19,9 +15,8 @@ class PostsController < ApplicationController
                @user = User.find(params[:user_id])
                @post = @user.posts.find(params[:id])
                @like = Like.find_by(user_id: current_user.id, post_id: @post.id)
-               @posts = @user.posts
-               @comments = @post.comments.order("created_at DESC")
-               @likers = all_users_that_liked_this_post
+               @comments = @post.comments.order('created_at DESC')
+               
           else
                redirect_to root_path
           end
@@ -35,6 +30,8 @@ class PostsController < ApplicationController
                else
                     redirect_to posts_path, alert: "You must be logged in to do that"
                end
+          else
+               redirect_to root_path
           end
      end
 
@@ -69,7 +66,7 @@ class PostsController < ApplicationController
      private 
 
      def post_params 
-          params.require(:post).permit(:image_url, :tag_list)
+          params.require(:post).permit(:image_url, :tag_list, :search)
      end
 
 end
